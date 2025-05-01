@@ -1,3 +1,3 @@
 # Enrollment System (BSIT 2A)
 
-This is a repository created for practical testing of the BSIT 2A students
+This is a repository created for the Final Requirement of BSIT 2A 
