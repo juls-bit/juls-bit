@@ -172,7 +172,7 @@ export default function Dashboard() {
             height={200}
             className="rounded-full w-50 h-50 object-cover mb-4"
           />
-          <h5 className="text-xl font-bold text-black mt-2 m-0">Jhon Doe</h5>
+          <h5 className="text-xl font-bold text-white mt-2 m-0">Jhon Doe</h5>
         </div>
         <header className="flex-1 flex items-center justify-center relative">
           <h1 className="bg-yellow-500 w-5/5 text-center text-4xl font-bold text-black p-10.5 py-20">
