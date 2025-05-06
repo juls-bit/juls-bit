@@ -7,26 +7,13 @@ import { useRouter } from "next/navigation";
 export default function Dashboard() {
   const router = useRouter();
   const [notifications, setNotifications] = useState([
-    {
-      id: "1",
-      text: "Where does it come from? Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of 'de Finibus Bonorum et Malorum' (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 'Lorem ipsum dolor sit amet..', comes from a line in section 1.10.32.",
-    },
-    { id: "2", text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
-    { id: "3", text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
-    { id: "4", text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
-    { id: "5", text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
-    { id: "6", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-    { id: "7", text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
-    { id: "8", text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
-    { id: "9", text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
-    { id: "10", text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
+    { id: "1", text: "Here you can manage your notifications" },
   ]);
   const [schedules, setSchedules] = useState([
-    { id: "1", text: "Here you can manage your sections, tasks, and schedules." },
-    { id: "2", text: "Here you can manage your sections, tasks, and schedules." },
+    { id: "1", text: "Here you can manage your schedules." },
   ]);
   const [tasks, setTasks] = useState([
-    { id: "1", text: "Here you can manage your sections, tasks, and schedules." },
+    { id: "1", text: "Here you can manage your tasks." },
   ]);
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState("");
@@ -288,52 +275,58 @@ export default function Dashboard() {
                 <button
                   onClick={() => openModal("notification")}
                   className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 cursor-pointer"
-                aria-label="Edit notification"
+                  aria-label="Add notification"
                 >
                   +
                 </button>
               </div>
-              <ul className="text-black bg-grey p-1 list-disc list-inside">
-                {notifications.length === 0 ? (
-                  <div className="flex justify-center items-center text-center text-black p-2">
-                    No notifications
-                  </div>
-                ) : (
-                notifications.map((notification) => (
-                  <li key={notification.id} className="bg-grey text-black p-1 flex justify-between items-center">
-                    <span>{notification.text}</span>
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => openModal("notification", notification.text, notification.id)}
-                        className="bg-yellow-500 text-white px-2 py-1 rounded-full hover:bg-yellow-600 flex items-center justify-center cursor-pointer"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-10-4l9-9 4 4-9 9H7v-4z" />
-                        </svg>
-                      </button>
-                      <button
-                        onClick={() => deleteItem("notification", notification.id)}
-                        className="bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-600 flex items-center justify-center cursor-pointer"
-                        aria-label="Delete notification"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4m-4 0a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1m-4 0h4" />
-                        </svg>
-                      </button>
-                    </div>
-                  </li>
-                  ))
-                )}
-              </ul>
+              {notifications.length === 0 ? (
+                <div className="flex justify-center items-center text-center text-black p-2">
+                  No notifications
+                </div>
+              ) : (
+                <table className="min-w-full text-black bg-gray p-1 border-separate border border-gray-300 table-auto">
+                  <tbody>
+                    {notifications.map((notification) => (
+                      <tr key={notification.id} className="bg-gray">
+                        <td className="border border-gray-300 px-4 py-2 break-words whitespace-normal max-w-xs">{notification.text}</td>
+                        <td className="border border-gray-300 px-2 py-2 text-center w-12">
+                          <button
+                            onClick={() => openModal("notification", notification.text, notification.id)}
+                            className="bg-yellow-500 text-white px-2 py-1 rounded-full hover:bg-yellow-600 inline-flex items-center justify-center cursor-pointer mr-2"
+                            aria-label="Edit notification"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-10-4l9-9 4 4-9 9H7v-4z" />
+                            </svg>
+                          </button>
+                        </td>
+                        <td className="border border-gray-300 px-2 py-2 text-center w-12">
+                          <button
+                            onClick={() => deleteItem("notification", notification.id)}
+                            className="bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-600 inline-flex items-center justify-center cursor-pointer"
+                            aria-label="Delete notification"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4m-4 0a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1m-4 0h4" />
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
             </div>
           </section>
-          <section className="content flex flex-row h-80 gap-1">
-            <div className="flex flex-col flex-1 gap-6 bg-grey shadow border-dotted border-2 border-yellow-400 rounded-lg h-auto p-1 relative">
-              <div className="flex justify-between items-center bg-gray-500 rounded-t-sm p-1 sticky top-0 z-10">
+          <section className="content flex flex-row h-80 gap-1 ">
+            <div className="flex flex-col flex-1 bg-grey shadow border-dotted border-2 border-yellow-400 rounded-lg h-auto p-1 relative overflow-scroll overflow-x-auto">
+              <div className="flex justify-between items-center bg-gray-500 rounded-t-sm p-1 sticky top-0 z-10 border-1 border-black">
                 <h1 className="text-black text-2xl font-bold">Upcoming Schedules</h1>
                 <button
                   onClick={() => openModal("schedule")}
                   className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 cursor-pointer"
+                  aria-label="Add schedule"
                 >
                   +
                 </button>
@@ -343,39 +336,46 @@ export default function Dashboard() {
                   No schedule
                 </div>
               ) : (
-                schedules.map((schedule) => (
-                  <div key={schedule.id} className="flex justify-between items-center">
-                    <p className="text-black">{schedule.text}</p>
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => openModal("schedule", schedule.text, schedule.id)}
-                        className="bg-yellow-500 text-white px-2 py-1 rounded-full hover:bg-yellow-600 flex items-center justify-center cursor-pointer"
-                        aria-label="Edit schedule"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-10-4l9-9 4 4-9 9H7v-4z" />
-                        </svg>
-                      </button>
-                      <button
-                        onClick={() => deleteItem("schedule", schedule.id)}
-                        className="bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-600 flex items-center justify-center cursor-pointer"
-                        aria-label="Delete schedule"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4m-4 0a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1m-4 0h4" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                ))
+                <table className="min-w-full text-black bg-grey p-1 border-separate border border-gray-300 table-auto">
+                  <tbody>
+                    {schedules.map((schedule) => (
+                      <tr key={schedule.id} className="bg-grey">
+                        <td className="border border-gray-300 px-4 py-2 break-words whitespace-normal max-w-xs">{schedule.text}</td>
+                        <td className="border border-gray-300 px-2 py-2 text-center w-12">
+                          <button
+                            onClick={() => openModal("schedule", schedule.text, schedule.id)}
+                            className="bg-yellow-500 text-white px-2 py-1 rounded-full hover:bg-yellow-600 inline-flex items-center justify-center cursor-pointer mr-2"
+                            aria-label="Edit schedule"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-10-4l9-9 4 4-9 9H7v-4z" />
+                            </svg>
+                          </button>
+                          </td>
+                          <td className="border border-gray-300 px-2 py-2 text-center w-12">
+                          <button
+                            onClick={() => deleteItem("schedule", schedule.id)}
+                            className="bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-600 inline-flex items-center justify-center cursor-pointer"
+                            aria-label="Delete schedule"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4m-4 0a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1m-4 0h4" />
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               )}
             </div>
-            <div className="flex flex-col flex-1 gap-6 bg-grey shadow border-dotted border-2 border-yellow-400 rounded-lg p-1 relative">
-              <div className="flex justify-between items-center bg-gray-500 rounded-t-sm p-1 sticky top-0 z-10">
+            <div className="flex flex-col flex-1 bg-grey shadow border-dotted border-2 border-yellow-400 rounded-lg p-1 relative overflow-scroll overflow-x-auto">
+              <div className="flex justify-between items-center bg-gray-500 rounded-t-sm p-1 sticky top-0 z-10 border-1 border-black">
                 <h1 className="text-black text-2xl font-bold">Upcoming Tasks</h1>
                 <button
                   onClick={() => openModal("task")}
                   className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 cursor-pointer"
+                  aria-label="Add task"
                 >
                   +
                 </button>
@@ -385,31 +385,37 @@ export default function Dashboard() {
                   No task
                 </div>
               ) : (
-                tasks.map((task) => (
-                  <div key={task.id} className="flex justify-between items-center">
-                    <p className="text-black">{task.text}</p>
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => openModal("task", task.text, task.id)}
-                        className="bg-yellow-500 text-white px-2 py-1 rounded-full hover:bg-yellow-600 flex items-center justify-center cursor-pointer"
-                        aria-label="Edit task"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-10-4l9-9 4 4-9 9H7v-4z" />
-                        </svg>
-                      </button>
-                      <button
-                        onClick={() => deleteItem("task", task.id)}
-                        className="bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-600 flex items-center justify-center cursor-pointer"
-                        aria-label="Delete task"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4m-4 0a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1m-4 0h4" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                ))
+                <table className="min-w-full text-black bg-grey p-1 border-separate border border-gray-300 table-auto">
+                  <tbody>
+                    {tasks.map((task) => (
+                      <tr key={task.id} className="bg-grey">
+                        <td className="border border-gray-300 px-4 py-2 break-words whitespace-normal max-w-xs">{task.text}</td>
+                        <td className="border border-gray-300 px-2 py-2 text-center w-12">
+                          <button
+                            onClick={() => openModal("task", task.text, task.id)}
+                            className="bg-yellow-500 text-white px-2 py-1 rounded-full hover:bg-yellow-600 inline-flex items-center justify-center cursor-pointer mr-2"
+                            aria-label="Edit task"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-10-4l9-9 4 4-9 9H7v-4z" />
+                            </svg>
+                          </button>
+                          </td>
+                          <td className="border border-gray-300 px-2 py-2 text-center w-12">
+                          <button
+                            onClick={() => deleteItem("task", task.id)}
+                            className="bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-600 inline-flex items-center justify-center cursor-pointer"
+                            aria-label="Delete task"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4m-4 0a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1m-4 0h4" />
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               )}
             </div>
           </section>
