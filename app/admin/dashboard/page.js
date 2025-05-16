@@ -16,7 +16,6 @@ const Dashboard = () => {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
       <div className="w-64 flex flex-col">
         <div className="flex flex-col items-center py-8 bg-blue-800 text-white">
           <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4">
@@ -50,7 +49,6 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col">
         <header className="bg-yellow-300 p-6 text-center text-2xl font-bold text-black">
           {active}
@@ -77,7 +75,6 @@ const Dashboard = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                {/* PAYMENT RECORDS */}
                 <div className="bg-white shadow rounded max-h-80 flex flex-col min-w-[600px]">
                   <div className="bg-yellow-300 p-3 font-bold text-black rounded-t-lg">
                     <span className="ml-4">PAYMENT RECORDS</span>
@@ -114,7 +111,6 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-                {/* INSTRUCTORS */}
                 <div className="bg-white shadow rounded max-h-80 flex flex-col min-w-[600px]">
                   <div className="bg-yellow-300 p-3 font-bold text-black rounded-t-lg">
                     <span className="ml-4">INSTRUCTORS</span>
